@@ -1,1 +1,18 @@
+# File: .github/workflows/example.yml
 
+on: [push]
+
+name: mydotnetprojectsample
+
+jobs:
+
+  executesample:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.MYDOTNETPROJECT_CREDENTIALS }}
+
+    - run: |
+        az group list
