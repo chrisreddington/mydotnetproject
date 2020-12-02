@@ -11,7 +11,6 @@ env:
   DOTNET_VERSION: '2.2.402'           # set this to the dot net version to use
 
 jobs:
-
   deploy-infrastructure:
     runs-on: ubuntu-latest
     steps:
@@ -26,9 +25,9 @@ jobs:
       with:
         subscriptionId: 0d9fd97f-71f6-4b7b-adbb-3a654846e587
         resourceGroupName: cloudwithchris-gh-rg
-        template: ./templates/azuredeploy.json
+        template: ./templates/azuredeploy.j
 
-    build-and-deploy-application:
+  build-and-deploy-application:
     runs-on: ubuntu-latest
     steps:
 
