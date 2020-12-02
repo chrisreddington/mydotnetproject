@@ -25,7 +25,7 @@ jobs:
       with:
         subscriptionId: 0d9fd97f-71f6-4b7b-adbb-3a654846e587
         resourceGroupName: cloudwithchris-gh-rg
-        template: ./templates/azuredeploy.j
+        template: ./templates/azuredeploy.json
 
   build-and-deploy-application:
     runs-on: ubuntu-latest
@@ -43,9 +43,11 @@ jobs:
       # Run dotnet build and publish
       - name: dotnet build and publish
         run: |
+          pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           dotnet restore
           dotnet build --configuration Release
           dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
+          popd
           
       # Deploy to Azure Web apps
       - name: 'Run Azure webapp deploy action using publish profile credentials'
