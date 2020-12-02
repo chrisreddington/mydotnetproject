@@ -13,6 +13,9 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.MYDOTNETPROJECT_CREDENTIALS }}
-
-    - run: |
-        az group list
+    
+    - uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: 0d9fd97f-71f6-4b7b-adbb-3a654846e587
+        resourceGroupName: cloudwithchris-gh-rg
+        template: ./templates/azuredeploy.json
