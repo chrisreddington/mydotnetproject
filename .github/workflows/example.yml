@@ -11,7 +11,9 @@ env:
   DOTNET_VERSION: '3.1.404'           # set this to the dot net version to use
 
 jobs:
-  deploy-infrastructure:
+  deploy-infrastructure: 
+    environment:
+      name: infrastructure.azure 
     runs-on: ubuntu-latest
     steps:
       
@@ -28,6 +30,9 @@ jobs:
         template: ./templates/azuredeploy.json
 
   build-and-deploy-application:
+    environment:
+      name: production.azure
+      url: https://webApp-c22zdowgigd2c.azurewebsites.net  
     runs-on: ubuntu-latest
     steps:
 
